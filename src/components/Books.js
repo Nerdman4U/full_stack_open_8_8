@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-const books_query = gql`
+const ALL_BOOKS = gql`
   query {
     allBooks {
       title
@@ -11,7 +11,7 @@ const books_query = gql`
 `;
 
 const Books = () => {
-  const result = useQuery(books_query);
+  const result = useQuery(ALL_BOOKS);
 
   if (result.loading) {
     return <div>loading...</div>;
