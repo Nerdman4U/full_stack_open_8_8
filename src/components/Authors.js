@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { gql, useQuery, useMutation } from "@apollo/client";
+import Select from "react-select";
 
 const ALL_AUTHORS = gql`
   query {
@@ -23,6 +24,7 @@ const EDIT_AUTHOR = gql`
 const Authors = () => {
   const [name, setName] = useState("");
   const [born, setBorn] = useState("");
+  const [selected, setSelected] = useState(null);
 
   const result = useQuery(ALL_AUTHORS);
   const [editAuthor] = useMutation(EDIT_AUTHOR, {
@@ -40,7 +42,7 @@ const Authors = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     editAuthor({
-      variables: { name, setBornTo: born },
+      variables: { name: selected.value, setBornTo: born },
     });
   };
 
@@ -64,7 +66,7 @@ const Authors = () => {
         </tbody>
       </table>
 
-      <div className="mt-10">
+      <div className="mt-10 min-h-96">
         <h2 className="text-3xl text-blue-900">Set birthyear</h2>
         <form onSubmit={handleSubmit}>
           <table>
@@ -72,10 +74,14 @@ const Authors = () => {
               <tr>
                 <td>author</td>
                 <td>
-                  <input
-                    className="border-2 ml-2"
-                    value={name}
-                    onChange={({ target }) => setName(target.value)}
+                  <Select
+                    className="ml-2"
+                    value={selected}
+                    onChange={setSelected}
+                    options={authors.map((a) => ({
+                      value: a.name,
+                      label: a.name,
+                    }))}
                   />
                 </td>
               </tr>

@@ -638,8 +638,20 @@ video {
   display: table;
 }
 
+.min-h-96 {
+  min-height: 24rem;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
 .overflow-x-auto {
   overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .rounded {
