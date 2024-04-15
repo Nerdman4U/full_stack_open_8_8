@@ -66,7 +66,7 @@ const AddBook = () => {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 overflow-x-auto">
       <h1 className="text-3xl text-blue-900">Add a new book</h1>
       <form onSubmit={submit}>
         <table className="mb-10">
