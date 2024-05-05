@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import Select from "react-select";
 
@@ -22,7 +22,6 @@ const EDIT_AUTHOR = gql`
 `;
 
 const Authors = () => {
-  const [name, setName] = useState("");
   const [born, setBorn] = useState("");
   const [selected, setSelected] = useState(null);
 
