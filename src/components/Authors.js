@@ -4,7 +4,7 @@ import Select from "react-select";
 
 const ALL_AUTHORS = gql`
   query {
-    allAuthors {
+    allAuthors(hasBooks: YES) {
       name
       born
       bookCount
@@ -36,6 +36,10 @@ const Authors = () => {
 
   if (result.loading) {
     return <div>loading...</div>;
+  }
+  if (!result.data) {
+    console.log("result:", result);
+    return <div>no data</div>;
   }
   const authors = result.data.allAuthors;
 
